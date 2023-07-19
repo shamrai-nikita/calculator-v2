@@ -33,7 +33,7 @@ so you need to create a data type to store expressions as
 Use `Int` type for numbers.
 Numbers and operators are separated with one or more whitespace characters.
 Program should support
-- binary addition, subtraction, multiplication and division;
+- binary addition, subtraction, multiplication, and division;
 - unary minus, square root;
 - negative number literals;
 - a variable called `x`.
@@ -92,6 +92,10 @@ There are 2 elements in stack after parsing all tokens of an RPN expression, sho
 Not enough arguments for operator -
 ```
 
+[Template with `Expression` data type skeleton and program structure with function placeholders](https://gist.github.com/artemohanjanyan/774b9c55f96ca3ea6eba397546768ceb).
+
+[Solution which supports only number literals, addition, and multiplication](https://gist.github.com/artemohanjanyan/33e17eae913259cee9df88e11fa5c615).
+
 ### 2. Evaluate expressions
 
 Implement `eval` command.
@@ -130,10 +134,16 @@ In this task you need to handle two types of errors which can occur in the evalu
 
 Implement three versions of `eval` command:
 - `eval-exceptions` must handle those errors using exceptions;
-- `eval-option` must handle those errors using `Option` type;
-- `eval-either` must handle those errors using `Either` type.
+- `eval-option` must handle those errors using `Option` type,
+   meaning your `eval` function must return `Option[Int]` instead of an `Int`;
+- `eval-either` must handle those errors using `Either` type,
+   meaning your `eval` function must return `Either[SomeErrorType, Int]` instead of an `Int`.
 
-When error occurs, print in instead of the result.
+When an error occurs, print in instead of the result.
+
+The goal of this task is to implement the same thing in three different ways,
+and then analyze your implementations,
+so you'll have to introduce some copy-paste in your code in this task.
 
 Example:
 
@@ -162,6 +172,11 @@ DivisionByZeroError
 
 And likewise for `eval-exceptions` and `eval-option`.
 
+After implementation, think about these questions:
+- In what ways `eval`, `eval-exceptions`, and `eval-option` are different?
+- In what ways are they the same?
+- Why could you prefer one of these error-handling approaches over the other?
+
 ### 4. Support different number types
 
 So far, we used `Int` type for numbers.
@@ -172,7 +187,7 @@ and rename command from task 3 that you like most to `eval`.
 
 Add `-type` option to commands `print` and `eval`
 with these possible values:
-- `-type=Int` — use `Int` type for parsing, printing and evaluation;
+- `-type=Int` — use `Int` type for parsing, printing, and evaluation;
 - `-type=Double` — use `Double`;
 - `-type=BigInt` — use `BigInt`.
 
